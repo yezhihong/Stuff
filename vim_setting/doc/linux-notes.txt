@@ -1,0 +1,45 @@
+*linux-notes.txt*	Notes for linux 
+
+==============================================================================
+Purpose:
+
+	Linux
+    Below are some notes when I was reading some doc. Hope it will help me
+later.
+
+
+==============================================================================
+Author:
+
+Huan Yao >
+    hyao@jlab.org
+<
+
+==============================================================================
+*Linux*
+
+Table of Contents
+
+
+1.   General                                          |linux-General|
+
+==============================================================================
+1.   General                                          *linux-General*
+ >
+	http://forums.fedoraforum.org/forum/showthread.php?t=97055
+<
+Back up binaray
+ >
+	quickpkg "packagename",e.g. xorg-server
+<
+Downgraded
+ >
+	emerge -av ="name", e.g. xorg-server-1.1.1-r4
+<
+Restart X server
+ >
+	/etc/init.d/xdm restart
+<
+
+
+ linux vim:isk=!-~,^*,^\|,^\":ft=help:norl:ma

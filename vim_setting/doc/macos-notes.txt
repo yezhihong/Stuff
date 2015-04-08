@@ -1,0 +1,211 @@
+*macos-notes.txt*	Notes for macos
+
+==============================================================================
+Purpose:
+
+	I use macos a lot, and of course, encounter some problems in the past. So I
+write some here to remind me later.
+	Below are some notes when I was reading some doc.
+
+==============================================================================
+Author:
+
+Huan Yao >
+    hyao@jlab.org
+    http://www.apple.com
+
+==============================================================================
+*macos*
+
+Table of Contents
+
+1.   Install/Uninstall                      |macos-Install/Uninstall|
+2.   Enable/Disable                            |macos-Enable/Disable|
+3.   Speed-Up                                        |macos-Speed-Up|
+4.   Linux/Mac                                      |macos-Linux/Mac|
+
+==============================================================================
+1.   Install/Uninstall                      *macos-Install/Uninstall*
+
+Usualy, application is just a folder in Application folder(depending on where
+user install it). So when uninstalling, just delete it, however you need also
+check $HOME/Library and $HOME/Library/Cache if there are some configuration
+folder for this application.
+
+==============================================================================
+2.   Enable/Disable                            *macos-Enable/Disable*
+
+Disable First Line. Second is Enable
+	a. Dashboard >
+	defaults write com.apple.dashboard mcx-disabled -boolean YES
+	---------
+	defaults write com.apple.dashboard mcx-disabled -boolean NO
+	Make it effect. Type "killall Dock"
+<
+	b. Spotlight >
+	in /etc/hostconfig
+	SPOTLIGHT=-NO-
+	in X11
+	mdutil -i off /
+	mdutil -E /
+	---------
+	in /etc/hostconfig
+	SPOTLIGHT=-YES-
+	in X11
+	mdutil -i on /
+<
+
+
+==============================================================================
+3.   Speed-Up                                        *macos-Speed-Up*
+
+ >
+		Reduce the number of icons on your Desktop
+<
+
+==============================================================================
+4.   Linux/Mac                                      *macos-Linux/Mac*
+
+ >
+	http://www.redhat.com/magazine/007may05/features/mac-mini/
+<
+	a. HD Partition: >
+					Apple Bootstrap 1M
+					swap			512M
+					/				10G
+					/home			all the left 
+<
+	b. not sure-->sound card: >
+					Add sbin/modprobe snd-powermac into
+					/etc/rc.d/rc.local	
+<
+	c. mouse: >
+			Add dev.mac_hid.mouse_button_emulation = 1 into
+			/etc/sysctl.conf
+			then run /sbin/sysctl -p to enable it
+			mouse-2 = Fn+Alt
+			mouse-3 = Fn+Apple	
+<
+	d. headphone: >
+			alsamixer (make sure you've installed alsa driver)
+			turn on headphone detection
+<
+	e. dual monitor: >
+			please check manual for xorg.conf
+	/*xorg.conf{{{*/
+	# Xorg configuration created by system-config-display
+
+	Section "ServerLayout"
+		Identifier     "Multihead layout"
+		Screen      0  "Screen0" 0 0
+		Screen      1  "Screen1" RightOf "Screen0"
+		InputDevice    "Keyboard0" "CoreKeyboard"
+		Option	    "Xinerama" "on"
+		Option	    "Clone" "off"
+	EndSection
+
+	Section "InputDevice"
+		Identifier  "Keyboard0"
+		Driver      "kbd"
+		Option	    "XkbModel" "pc105"
+		Option	    "XkbLayout" "us,in"
+		Option	    "XkbVariant" "tam_TAB"
+		Option	    "XkbOptions" "grp:shifts_toggle,grp_led:scroll"
+	EndSection
+
+	Section "Monitor"
+
+	 ### Comment all HorizSync and VertSync values to use DDC:
+	 ### Comment all HorizSync and VertSync values to use DDC:
+	 ### Comment all HorizSync and VertSync values to use DDC:
+		Identifier   "Monitor0"
+		ModelName    "Apple iBook2 12"
+	 ### Comment all HorizSync and VertSync values to use DDC:
+		HorizSync    30.0 - 70.0
+		VertRefresh  59.9 - 60.1
+		Option	    "dpms"
+	EndSection
+
+	Section "Monitor"
+
+	 ### Comment all HorizSync and VertSync values to use DDC:
+		Identifier   "Monitor1"
+		VendorName   "Monitor Vendor"
+		ModelName    "Dell 1906FP (Digital)"
+	 ### Comment all HorizSync and VertSync values to use DDC:
+		HorizSync    30.0 - 81.0
+		VertRefresh  56.0 - 76.0
+		Option	    "dpms"
+	EndSection
+
+	Section "Device"
+
+		#Option	    "UseFBDev" "true"
+		Identifier  "Videocard0"
+		Driver      "radeon"
+		VendorName  "Videocard Vendor"
+		BoardName   "ATI Technologies Inc Radeon Mobility M7 LW [Radeon Mobility 7500]"
+		BusID       "PCI:0:16:0"
+	EndSection
+
+	Section "Device"
+
+		#Screen      1
+		Identifier  "Videocard1"
+		Driver      "radeon"
+		VendorName  "Videocard Vendor"
+		BoardName   "ATI Technologies Inc Radeon Mobility M7 LW [Radeon Mobility 7500]"
+		BusID       "PCI:0:16:0"
+	EndSection
+
+	Section "Screen"
+		Identifier "Screen0"
+		Device     "Videocard0"
+		Monitor    "Monitor0"
+		DefaultDepth     24
+		Option         "backingstore"
+		SubSection "Display"
+			Viewport   0 0
+			Depth     24
+			Modes    "1024x768" "800x600" "640x480"
+		EndSubSection
+	EndSection
+
+	Section "Screen"
+		Identifier "Screen1"
+		Device     "Videocard1"
+		Monitor    "Monitor1"
+		DefaultDepth     24
+		Option         "backingstore"
+		SubSection "Display"
+			Viewport   0 0
+			Depth     24
+			Modes    "1024x768"
+		EndSubSection
+	EndSection
+	/*}}}*/
+
+<
+	f. install vim >
+		download file from vim.org
+		su
+		./configure --prefix=/usr --with-feature=huge --mac-arch=ppc
+		make
+		make install
+<
+	g. Power Manager >
+		install apmud package. And restart.
+<
+	10. keyboard >
+		install pbbuttons from pbbuttons.berlios.de
+<
+	11. copy like middle button on mouse	 >
+		fn+ctrl
+<
+	12. eject CD-ROM >
+		check manual of eject
+		eject -r
+		then bind key F12 to it.
+<
+	13. /proc and /var/log very important
+ macos vim:isk=!-~,^*,^\|,^\":ft=help:norl:ma

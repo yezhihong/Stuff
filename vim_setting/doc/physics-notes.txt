@@ -1,0 +1,46 @@
+*physics-notes.txt*	Notes for physics and analyzer
+==============================================================================
+Purpose:
+
+	Provide the some introductions of physics definition.
+
+==============================================================================
+Author:
+
+Huan Yao >
+    hyao@jlab.org
+
+==============================================================================
+*physics*
+
+Table of Contents
+
+1.   Chiral-Soliton-Model              |physics-Chiral-Soliton-Model|
+2.   Instanton                                    |physics-Instanton|
+3.   LSS-BBS                                        |physics-LSS-BBS|
+100. Factorized                                  |physics-Factorized|
+
+==============================================================================
+1.   Chiral-Soliton-Model              *physics-Chiral-Soliton-Model*
+
+	Xiaochao's thesis Page 61
+	NJL Model: Nambu and Jona-Lasinio Model
+==============================================================================
+2.   Instanton                                    *physics-Instanton*
+
+	Xiaochao's thesis Page 62
+	non-perturbative vacuum fluctuations of the gluon fields
+==============================================================================
+3.   LSS-BBS                                        *physics-LSS-BBS*
+	
+	Xiaochao's thesis Page 55
+	LSS: E.Leader,Sidorov and Stamenov parameterization
+	BBS: Brodsky,Burkhardt and Schmidt parameterization
+==============================================================================
+100. Factorized                                  *physics-Factorized*
+	
+>
+	Ex: f(x,y)=f1(x)*f2(y)	
+<
+
+ physics vim:isk=!-~,^*,^\|,^\":ft=help:norl:ma

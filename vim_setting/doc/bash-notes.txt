@@ -1,0 +1,37 @@
+*bash-notes.txt*	Notes for bash
+==============================================================================
+Purpose:
+
+    In physics field, people often use bash as analysis tool. In Jefferson
+Lab, analyzer is developed by people to generate bash file from raw data and
+provide more specific class library for users.
+    Below are some notes when I was reading some doc. Hope it will help me
+later.
+
+
+==============================================================================
+Author:
+
+Huan Yao >
+    hyao@jlab.org
+	http://www.gnu.org/software/bash/manual/bashref.html
+	http://tldp.org/LDP/abs/html/
+
+==============================================================================
+*BASH* *bash*
+Table of Contents
+
+1.   String                                             |bash-String|
+2.   Rename                                             |bash-Rename|
+
+==============================================================================
+1.   String                                             *bash-String*
+
+	a.Concatenate >
+		NEWSTRING=$STRING1$STRING2
+<
+2.   Rename                                             *bash-Rename*
+
+	a.Rename oldname newname *.cpp
+
+ bash vim:isk=!-~,^*,^\|,^\":ft=help:norl:ma

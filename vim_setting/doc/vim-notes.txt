@@ -1,0 +1,78 @@
+*vim-notes.txt*	Notes for vim
+
+==============================================================================
+Purpose:
+
+	I use vim a lot, and of course, encounter some problems in the past. So I
+write some here to remind me later.
+	Below are some notes when I was reading some doc.
+
+==============================================================================
+Author:
+
+Huan Yao >
+    hyao@jlab.org
+    http://www.vim.org
+
+==============================================================================
+*vim*
+
+Table of Contents
+
+0.   Installation                                  |vim-Installation|
+1.   Command_Format                                |vim-Command_Format|
+2.   Command_Line                                  |vim-Command_Line|
+3.   Read Chines                                   |vim-Read_Chinese|
+
+==============================================================================
+0.   Installation                                  *vim-Installation*
+
+	please check |macos-Install/Uninstall|
+
+==============================================================================
+1.   Command_Format                              *vim-Command_Format*
+
+	a. normal >
+		set autoindent
+<
+	b.  map >
+		inoremap <buffer> ,, <ESC>A ><CR><CR><<UP>
+		map ,w :call <SID>BrowserURL()<CR>
+		map <C-j> <C-w>w
+<
+	c.  command >
+		command! -buffer -nargs=? DefineKeyWord call s:DefineKeyWord(<f-args>)
+		command! -buffer -nargs=? Addstar normal i*<args>*<ESC>
+<
+	d.  function >
+		exe "normal O\<CR>".a:bra."\<ESC>"
+
+		return a:bra."\<CR>\<ESC>A\<CR>".a:ket."\<UP>\<ESC>\^i"
+		<->imap {} <C-r>=BracketsCompletion("{","}")<CR>
+<
+	e.  autocmd >
+		autocmd BufReadPost *
+		   		\ if line("'\"") > 0 && line("'\"") <= line("$") |
+		   		\   exe "normal g`\"" |
+		   		\ endif
+		au BufNewFile,BufRead *.html so <sfile>:h/html.vim
+<
+		
+==============================================================================
+2.   Command_Line                                  *vim-Command_Line*
+
+
+	a." Automate editing of a file (Ex commands in convert.vim) >
+	vim -s "convert.vim" file.c
+<
+==============================================================================
+3.   Read_Chinese                                  *vim-Read_Chinese*
+
+
+	let &termencoding=&encoding
+	set fileencodings=utf-8,gbk
+<
+	
+		
+
+ vim vim:isk=!-~,^*,^\|,^\":ft=help:norl:ma

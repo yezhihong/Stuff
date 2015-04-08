@@ -1,0 +1,75 @@
+*root-notes.txt*	Notes for root and analyzer
+==============================================================================
+Purpose:
+
+    In physics field, people often use root as analysis tool. In Jefferson
+Lab, analyzer is developed by people to generate root file from raw data and
+provide more specific class library for users.
+    Below are some notes when I was reading some doc. Hope it will help me
+later.
+
+
+==============================================================================
+Author:
+
+Huan Yao >
+    hyao@jlab.org
+    http://root.cern.ch
+    http://www.jlab.org
+    http://www.vim.org/
+
+==============================================================================
+*root* *analyzer*
+
+Table of Contents
+
+
+1.   char                                                 |root-char|
+11.  Input/Output                                 |root-Input/Output|
+12.  Trees                                               |root-Trees|
+18.  BIT()                                               |root-BIT()|
+
+==============================================================================
+1.   char                                                 *root-char*
+>
+	in C & C++, single quote ' for character 
+				double quote " for string ( a pointer )
+<
+==============================================================================
+11.  Input/Output                                 *root-Input/Output*
+
+	a. run functions in other place >
+		#include "filename.h/c"
+		gROOT->ProcessLine("root_command");
+		system("bash_command"==-1);//-1 failed, 0 successful
+<
+	b. redirect stdout to file >
+		streambuf* cout_sbuf = cout.rdbuf(); // save original sbuf
+		ofstream   fout(resolved_name_out);
+		cout.rdbuf(fout.rdbuf()); // redirect 'cout' to a 'fout'
+		cout.rdbuf(cout_sbuf); // restore the original stream buffer
+<
+
+==============================================================================
+12.  Trees                                               *root-Trees*
+
+T->Project and Normal Reading(ex: drifttime t1) >
+	T->Project only plot the leaf with Ndata.B.dc.plane.time==1.
+	But normal reading inlcudes not only Ndata.B.dc.plane.time==1 but also >1 but with only choosing the first hit. 
+<
+TTree GetEntry(),GetEntries() >
+	GetEntry()---Read All data for entry();
+	GetEntries()---Get number of Entries.
+<
+Page186 Size of TTree in the File >
+	To process the multiple files created by ChangeFile(), one must use a TChain.
+<
+Page190 TClonesArray >
+	TClonesArray is managing objects of the same class. It will save a lot of time when it's used on tracking.
+<
+==============================================================================
+18.  BIT()                                               *root-BIT()*
+a.  #include <Rtypes.h>
+	#define BIT(n)       (1 << (n))
+
+ root vim:isk=!-~,^*,^\|,^\":ft=help:norl:ma
